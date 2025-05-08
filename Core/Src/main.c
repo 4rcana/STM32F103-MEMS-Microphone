@@ -155,19 +155,7 @@ int main(void)
 
 	switch(timer){
 	case 500:
-		RMS = sqrt(total_sum/(counter*(ADC_BUF_LEN/2)));
-		sprintf(message_buffer,"RMS Value: %.2f\r\n",RMS);
-		HAL_UART_Transmit(&huart2,(uint8_t *)message_buffer,40,HAL_MAX_DELAY);
-		counter=0;
-		total_sum=0;
-		break;
 	case 1000:
-		RMS = sqrt(total_sum/(counter*(ADC_BUF_LEN/2)));
-		sprintf(message_buffer,"RMS Value: %.2f\r\n",RMS);
-		HAL_UART_Transmit(&huart2,(uint8_t *)message_buffer,40,HAL_MAX_DELAY);
-		counter=0;
-		total_sum=0;
-		break;
 	case 1500:
 		RMS = sqrt(total_sum/(counter*(ADC_BUF_LEN/2)));
 		sprintf(message_buffer,"RMS Value: %.2f\r\n",RMS);
