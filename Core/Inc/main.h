@@ -31,7 +31,7 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-extern int timer;
+extern uint16_t timer;
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/

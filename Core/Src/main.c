@@ -54,12 +54,11 @@ I2C_HandleTypeDef hi2c1;
 UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
+float total_sum=0, RMS=0;
 uint16_t adc_buf[ADC_BUF_LEN];
-float total_sum=0;
+uint16_t timer=0;
 char message_buffer[40];
-int counter=0;
-int timer=0;
-float RMS=0;
+uint8_t counter=0;				// if ADC buffer size was reduced this may need to change to uint16_t
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -127,6 +126,33 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+
+  /*
+	if(timer % 500 == 0) {
+
+		RMS = sqrt(total_sum/(counter*(ADC_BUF_LEN/2)));
+		sprintf(message_buffer,"RMS Value: %.2f\r\n",RMS);
+		HAL_UART_Transmit(&huart2,(uint8_t *)message_buffer,40,HAL_MAX_DELAY);
+
+		if(timer == 2000){									// This if block isn't being executed, probably because data processing
+															// in previous block takes more time than 1ms and when the code gets to this
+			sprintf(message_buffer,"%.2f",RMS);				// if block the timer is already more than 2000.
+			SSD1306_Fill(SSD1306_COLOR_BLACK);
+			SSD1306_GotoXY(0,13);
+			SSD1306_Puts("RMS Value: ", &Font_7x10, SSD1306_COLOR_WHITE);
+			SSD1306_GotoXY(80,13);
+			SSD1306_Puts(message_buffer, &Font_7x10, SSD1306_COLOR_WHITE);
+			SSD1306_UpdateScreen();
+			timer=0;
+
+		}
+
+		counter=0;
+		total_sum=0;
+
+	}
+  */
+
 	switch(timer){
 	case 500:
 		RMS = sqrt(total_sum/(counter*(ADC_BUF_LEN/2)));
